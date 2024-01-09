@@ -6,7 +6,7 @@ public class Hp {
     // playCarrotGame();
   }
 
-  private static void playCarrotGame() {
+  public static void playCarrotGame() {
     int carrotHp = 10;
     int maxTurns = 30;
     int currentTurn = 0;

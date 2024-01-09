@@ -22,6 +22,6 @@ public class Test {
 	    carrot.IQ -= 3;
 	    System.out.println("오답입니다. IQ가 3 하락합니다.");
 	  }
-	  
+	  Hp.playCarrotGame();
 	}
 }
