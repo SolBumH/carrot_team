@@ -12,7 +12,7 @@ import com.carrot.dto.Carrot_DTO;
 
 public class Carrot_DAO {
   
-  public List<Carrot_DTO> doTest() {
+  public List<Carrot_DTO> doTest_one() {
     Connection conn = DBConn_Test.getInstance().getConn();
     List<Carrot_DTO> list = null;
     PreparedStatement pstmt = null;
@@ -27,6 +27,36 @@ public class Carrot_DAO {
       list = new ArrayList<Carrot_DTO>();
       
       if (rs.next()) {
+        Carrot_DTO dto = new Carrot_DTO();
+        dto.setTest_content(rs.getString("test_content"));
+        dto.setTest_answer(rs.getInt("test_answer"));
+        dto.setTest_level(rs.getInt("test_level"));
+        list.add(dto);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      close(conn, pstmt, rs);
+    }
+    
+    return list;
+  }
+  
+  public List<Carrot_DTO> doTest() {
+    Connection conn = DBConn_Test.getInstance().getConn();
+    List<Carrot_DTO> list = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+    // String random = String.valueOf((int) (Math.random() * 30 + 1));
+    String sql = "select * from 5_team_carrot"; // where test_no=?";
+    
+    try {
+      pstmt = conn.prepareStatement(sql);
+      // pstmt.setString(1, random);
+      rs = pstmt.executeQuery();
+      list = new ArrayList<Carrot_DTO>();
+      
+      while (rs.next()) {
         Carrot_DTO dto = new Carrot_DTO();
         dto.setTest_content(rs.getString("test_content"));
         dto.setTest_answer(rs.getInt("test_answer"));
